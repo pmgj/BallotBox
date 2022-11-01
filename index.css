@@ -1,0 +1,68 @@
+h1,
+h2 {
+    text-align: center;
+}
+
+form {
+    width: 295px;
+    margin: 0 auto;
+}
+
+input {
+    margin: 5px;
+    width: 85px;
+    height: 50px;
+    background-color: black;
+    color: white;
+}
+
+input[value="Branco"] {
+    background-color: white;
+    color: black;
+}
+
+input[value="Corrige"] {
+    background-color: orange;
+    color: white;
+}
+
+input[value="Confirma"] {
+    background-color: green;
+    color: white;
+}
+
+span {
+    display: inline-block;
+    border-bottom: 1px solid black;
+    width: 2em;
+}
+
+input[disabled] {
+    visibility: hidden;
+}
+
+#nome {
+    text-align: center;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+table {
+    width: 500px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid black;
+}
+
+.eleito {
+    background-color: gray;
+    color: white;
+}
+
+caption {
+    font-weight: bold;
+}
