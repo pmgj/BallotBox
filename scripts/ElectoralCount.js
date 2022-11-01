@@ -10,7 +10,7 @@ class Polling {
         let candidates = p.computeElected();
         let resultCandidatos = "", resultPartidos = "";
         candidates.forEach(x => {
-            let style = x.elected ? " class='eleito'" : "";
+            let style = x.elected ? " class='elected'" : "";
             resultCandidatos += `<tr${style}><td>${x.name}</td><td>${x.number}</td><td>${x.votes}</td></tr>`;
         });
         data.forEach(x => {

@@ -41,7 +41,7 @@ input[disabled] {
     visibility: hidden;
 }
 
-#nome {
+#name {
     text-align: center;
     font-weight: bold;
     font-size: 120%;
@@ -58,7 +58,7 @@ td {
     border: 1px solid black;
 }
 
-.eleito {
+.elected {
     background-color: gray;
     color: white;
 }
