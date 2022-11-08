@@ -1,13 +1,13 @@
 import ElectoralSystem from "./ElectoralSystem.js";
 
 export default class OpenList extends ElectoralSystem {
-    constructor(votes, parties, chairs) {
-        super(votes, parties, chairs);
+    constructor(votes, parties, candidates, chairs) {
+        super(votes, parties, candidates, chairs);
     }
     computeChairs() {
         let partiesVotes = [], numValidVotes = 0;
         this.parties.forEach(p => {
-            let cNumbers = p.candidates.map(c => c.number);
+            let cNumbers = this.candidates.filter(c => c.number.toString().substring(0, 2) == p.number).map(c => c.number);
             let temp = this.votes.map(vote => vote === p.number || cNumbers.includes(vote) ? 1 : 0).reduce((a, b) => a + b, 0);
             partiesVotes.push({ number: p.number, votes: temp });
             numValidVotes += temp;
@@ -31,7 +31,7 @@ export default class OpenList extends ElectoralSystem {
     }
     computeElected() {
         let partiesVotes = this.computeChairs();
-        let candidates = this.parties.map(p => p.candidates.map(c => new Object({ number: c.number, votes: this.votes.map(vote => vote === c.number ? 1 : 0).reduce((a, b) => a + b, 0) }))).flat();
+        let candidates = this.candidates.map(c => new Object({ name: c.name, number: c.number, votes: this.votes.map(vote => vote === c.number ? 1 : 0).reduce((a, b) => a + b, 0) }));
         let descending = (a, b) => b.votes - a.votes;
         candidates.sort(descending);
         partiesVotes.forEach(pv => {

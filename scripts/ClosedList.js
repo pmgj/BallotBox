@@ -1,8 +1,8 @@
 import ElectoralSystem from "./ElectoralSystem.js";
 
 export default class ClosedList extends ElectoralSystem {
-    constructor(votes, parties, chairs) {
-        super(votes, parties, chairs);
+    constructor(votes, parties, candidates, chairs) {
+        super(votes, parties, candidates, chairs);
     }
     computeChairs() {
         let partiesVotes = [], numValidVotes = 0;
@@ -32,14 +32,15 @@ export default class ClosedList extends ElectoralSystem {
         let partiesVotes = this.computeChairs();
         partiesVotes.forEach(pv => {
             let chairs = pv.chairs;
-            let candidates = this.parties.filter(p => p.number === pv.number)[0].candidates;
+            let candidates = this.candidates.filter(c => c.number === pv.number)[0].candidates;
             for (let c of candidates) {
                 if (chairs > 0) {
                     c.elected = true;
                     chairs--;
                 }
             }
+            pv.candidates = candidates;
         });
-        return this.parties;
+        return partiesVotes;
     }
 }
