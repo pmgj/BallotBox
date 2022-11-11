@@ -10,7 +10,7 @@ class Test {
             { name: "Partido dos Trabalhadores", number: 13, abbr: "PT" },
             { name: "Partido Trabalhista Brasileiro", number: 14, abbr: "PTB" },
             { name: "Movimento Democrático Brasileiro", number: 15, abbr: "MDB" }
-        ];        
+        ];
     }
     test1() {
         let candidates = [
