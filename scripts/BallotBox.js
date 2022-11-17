@@ -53,7 +53,7 @@ class BallotBox {
                 }
                 if (text.length === 4) {
                     this.conn.getCandidate(this.number, e => {
-                        if(e) {
+                        if (e) {
                             this.writeMessage(e.name);
                         } else {
                             this.writeMessage("Inexistent Candidate");
@@ -132,10 +132,11 @@ class BallotBox {
             this.conn.insertVote(v);
         }
     }
-    init() {
+    async init() {
         this.registerEvents(true);
         this.conn = new Database();
-        this.conn.init(this.createInitialValues.bind(this));
+        await new Promise(this.conn.init.bind(this.conn));
+        // this.createInitialValues();
     }
 }
 let bb = new BallotBox();

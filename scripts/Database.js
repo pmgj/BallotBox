@@ -19,12 +19,6 @@ export default class Database {
     getCandidate(number, func) {
         this.getObject(this.CANDIDATES, number, func);
     }
-    updateVote(option) {
-        let transaction = this.db.transaction(this.DATABASE, "readwrite");
-        let store = transaction.objectStore(this.DATABASE);
-        let request = store.put(option);
-        request.onerror = this.requestError;
-    }
     requestError(e) {
         console.error("Error", e.target.error);
     }
@@ -40,11 +34,25 @@ export default class Database {
             stores.createObjectStore(this.VOTES, { keyPath: 'id', autoIncrement: true });
         }
     }
-    listAll(func) {
-        let transaction = this.db.transaction(this.DATABASE, "readonly");
-        let store = transaction.objectStore(this.DATABASE);
+    listVotes(resolve) {
+        let transaction = this.db.transaction(this.VOTES, "readonly");
+        let store = transaction.objectStore(this.VOTES);
         let request = store.getAll();
-        request.onsuccess = e => func(e.target.result);
+        request.onsuccess = e => resolve(e.target.result);
+        request.onerror = this.requestError;
+    }
+    listCandidates(resolve) {
+        let transaction = this.db.transaction(this.CANDIDATES, "readonly");
+        let store = transaction.objectStore(this.CANDIDATES);
+        let request = store.getAll();
+        request.onsuccess = e => resolve(e.target.result);
+        request.onerror = this.requestError;
+    }
+    listParties(resolve) {
+        let transaction = this.db.transaction(this.PARTIES, "readonly");
+        let store = transaction.objectStore(this.PARTIES);
+        let request = store.getAll();
+        request.onsuccess = e => resolve(e.target.result);
         request.onerror = this.requestError;
     }
     insertOption(store, option) {
@@ -67,7 +75,7 @@ export default class Database {
         openRequest.onerror = this.requestError;
         openRequest.onsuccess = e => {
             this.db = e.target.result;
-            // func();
+            func();
         };
     }
 }
