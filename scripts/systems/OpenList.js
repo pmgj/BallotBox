@@ -32,8 +32,7 @@ export default class OpenList extends ElectoralSystem {
     computeElected() {
         let partiesVotes = this.computeChairs();
         let candidates = this.candidates.map(c => new Object({ name: c.name, number: c.number, votes: this.votes.map(vote => vote === c.number ? 1 : 0).reduce((a, b) => a + b, 0) }));
-        let descending = (a, b) => b.votes - a.votes;
-        candidates.sort(descending);
+        candidates.sort(this.descending);
         partiesVotes.forEach(pv => {
             let chairs = pv.chairs;
             let number = pv.number;

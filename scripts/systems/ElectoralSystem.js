@@ -7,4 +7,7 @@ export default class ElectoralSystem {
         this.BRANCO = 96;
         this.NULO = 97;
     }
+    descending(a, b) {
+        return b.votes - a.votes;
+    } 
 }

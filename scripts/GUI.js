@@ -1,6 +1,6 @@
 import Database from "./Database.js";
 
-class BallotBox {
+class GUI {
     constructor() {
         this.index = 0;
         this.number = 0;
@@ -139,5 +139,5 @@ class BallotBox {
         // this.createInitialValues();
     }
 }
-let bb = new BallotBox();
+let bb = new GUI();
 bb.init();

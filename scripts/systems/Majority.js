@@ -6,8 +6,7 @@ export default class Majority extends ElectoralSystem {
     }
     computeElected() {
         let candidates = this.candidates.map(c => new Object({name: c.name, number: c.number, votes: this.votes.map(vote => vote === c.number ? 1 : 0).reduce((a, b) => a + b, 0)}));
-        let descending = (a, b) => b.votes - a.votes;
-        candidates.sort(descending);
+        candidates.sort(this.descending);
         let chairs = this.CHAIRS;
         candidates.forEach(c => {
             if(chairs > 0) {

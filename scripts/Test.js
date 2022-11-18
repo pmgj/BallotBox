@@ -1,6 +1,6 @@
-import OpenList from "./OpenList.js";
-import ClosedList from "./ClosedList.js";
-import Majority from "./Majority.js";
+import OpenList from "./systems/OpenList.js";
+import ClosedList from "./systems/ClosedList.js";
+import Majority from "./systems/Majority.js";
 
 class Test {
     constructor() {

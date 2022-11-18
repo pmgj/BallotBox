@@ -35,23 +35,18 @@ export default class Database {
         }
     }
     listVotes(resolve) {
-        let transaction = this.db.transaction(this.VOTES, "readonly");
-        let store = transaction.objectStore(this.VOTES);
-        let request = store.getAll();
-        request.onsuccess = e => resolve(e.target.result);
-        request.onerror = this.requestError;
+        this.list(this.VOTES, resolve);
     }
     listCandidates(resolve) {
-        let transaction = this.db.transaction(this.CANDIDATES, "readonly");
-        let store = transaction.objectStore(this.CANDIDATES);
-        let request = store.getAll();
-        request.onsuccess = e => resolve(e.target.result);
-        request.onerror = this.requestError;
+        this.list(this.CANDIDATES, resolve);
     }
     listParties(resolve) {
-        let transaction = this.db.transaction(this.PARTIES, "readonly");
-        let store = transaction.objectStore(this.PARTIES);
-        let request = store.getAll();
+        this.list(this.PARTIES, resolve);
+    }
+    list(store, resolve) {
+        let transaction = this.db.transaction(store, "readonly");
+        let objectStore = transaction.objectStore(store);
+        let request = objectStore.getAll();
         request.onsuccess = e => resolve(e.target.result);
         request.onerror = this.requestError;
     }

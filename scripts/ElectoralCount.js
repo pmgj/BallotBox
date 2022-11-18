@@ -1,7 +1,7 @@
 import Database from "./Database.js";
-import OpenList from "./OpenList.js";
+import OpenList from "./systems/OpenList.js";
 
-class Polling {
+class ElectoralCount {
     constructor() {
         this.conn = null;
     }
@@ -34,5 +34,5 @@ class Polling {
         this.updateTables(votes, candidates, parties);
     }
 }
-let p = new Polling();
+let p = new ElectoralCount();
 p.init();
