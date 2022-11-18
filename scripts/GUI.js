@@ -43,22 +43,10 @@ class GUI {
                 this.number = parseInt(text);
                 this.writeMessage("");
                 if (text.length === 2) {
-                    this.conn.getParty(this.number, e => {
-                        if (e) {
-                            this.writeMessage(e.name);
-                        } else {
-                            this.writeMessage("Inexistent Party");
-                        }
-                    });
+                    this.conn.getParty(this.number, e => this.writeMessage(e ? e.name : "Inexistent Party"));
                 }
                 if (text.length === 4) {
-                    this.conn.getCandidate(this.number, e => {
-                        if (e) {
-                            this.writeMessage(e.name);
-                        } else {
-                            this.writeMessage("Inexistent Candidate");
-                        }
-                    });
+                    this.conn.getCandidate(this.number, e => this.writeMessage(e ? e.name : "Inexistent Candidate"));
                 }
                 break;
             case 'Branco':
