@@ -9,17 +9,11 @@ class ElectoralCount {
         let v = votes.map(v => v.vote);
         let p = new OpenList(v, parties, candidates, 5);
         let elected = p.computeElected();
-        console.table(elected);
         let resultCandidatos = "", resultPartidos = "";
-        elected.forEach(x => {
-            let style = x.elected ? " class='elected'" : "";
-            resultCandidatos += `<tr${style}><td>${x.name}</td><td>${x.number}</td><td>${x.votes}</td></tr>`;
-        });
-        parties.forEach(x => {
-            let temp = v.filter(n => n === x.number).length;
-            resultPartidos += `<tr><td>${x.name}</td><td>${x.abbr}</td><td>${x.number}</td><td>${temp}</td></tr>`;
-        });
-        resultPartidos += `<tr><td>Branco</td><td>Branco</td><td>96</td><td>${v.filter(n => n === 96).length}</td></tr>`;
+        elected.forEach(x => resultCandidatos += `<tr${x.elected ? " class='elected'" : ""}><td>${x.name}</td><td>${x.number}</td><td>${x.votes}</td></tr>`);
+        parties.forEach(x => resultPartidos += `<tr><td>${x.name}</td><td>${x.abbr}</td><td>${x.number}</td><td>${v.filter(n => n === x.number).length}</td></tr>`);
+        resultPartidos += `<tr><td>Branco</td><td>Branco</td><td>96</td><td>${p.getWhiteVotes()}</td></tr>`;
+        resultPartidos += `<tr><td>Nulo</td><td>Nulo</td><td>97</td><td>${p.getNullVotes()}</td></tr>`;
         let tableCandidates = document.querySelector("tbody");
         tableCandidates.innerHTML = resultCandidatos;
         let tableParties = document.querySelector("table + table tbody");
