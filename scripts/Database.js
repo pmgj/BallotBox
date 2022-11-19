@@ -94,19 +94,10 @@ export default class Database {
         request.onsuccess = e => resolve(e.target.result);
         request.onerror = this.requestError;
     }
-    insertOption(store, option) {
-        let transaction = this.db.transaction(store, "readwrite");
-        let objectStore = transaction.objectStore(store);
-        objectStore.add(option);
-    }
-    insertParty(value) {
-        this.insertOption(this.PARTIES, value);
-    }
-    insertCandidate(value) {
-        this.insertOption(this.CANDIDATES, value);
-    }
     insertVote(value) {
-        this.insertOption(this.VOTES, { vote: value });
+        let transaction = this.db.transaction(this.VOTES, "readwrite");
+        let objectStore = transaction.objectStore(this.VOTES);
+        objectStore.add({ vote: value });
     }
     init(resolve) {
         let openRequest = window.indexedDB.open(this.DATABASE, 1);
