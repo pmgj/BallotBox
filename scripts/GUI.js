@@ -58,7 +58,7 @@ class GUI {
                 break;
             case 'Confirma':
                 this.registerEvents(false);
-                this.computeVote(this.number);
+                this.conn.insertVote(this.number);
                 this.writeMessage("Vote computed successfully!");
                 setTimeout(() => {
                     this.correct();
@@ -70,9 +70,6 @@ class GUI {
     registerEvents(reg) {
         let botoes = document.querySelectorAll("input:enabled[type='button']");
         botoes.forEach(e => reg ? e.onclick = this.go.bind(this) : e.onclick = null);
-    }
-    computeVote(number) {
-        this.conn.insertVote(number);
     }
     async init() {
         this.registerEvents(true);
