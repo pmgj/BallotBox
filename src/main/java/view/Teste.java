@@ -64,7 +64,7 @@ public class Teste {
             objs[i] = this.getCargo(cargos[i]);
         }
 
-        var in = new Input2(objs);
+        var in = new Input(objs);
         c.add(in);
 
         GridLayout fl = new GridLayout(5, 3);
