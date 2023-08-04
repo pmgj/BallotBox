@@ -40,7 +40,7 @@ public class Input extends JPanel {
         this.createLabels(cargo.getQuantidadeNumeros());
         this.jpDigits.setBounds(20, 140, 300, 45);
         this.add(this.jpDigits);
-        int initialHeight = 300, stepHeight = 20;
+        int initialHeight = 280, stepHeight = 20;
         this.lblFoot.setBounds(0, initialHeight, 550, 20);
         this.lblFoot.setFont(new Font("SansSerif", Font.PLAIN, 12));
         this.add(this.lblFoot);
