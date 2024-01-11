@@ -46,23 +46,3 @@ input[disabled] {
     font-weight: bold;
     font-size: 120%;
 }
-
-table {
-    width: 500px;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    border: 1px solid black;
-}
-
-.elected {
-    background-color: gray;
-    color: white;
-}
-
-caption {
-    font-weight: bold;
-}
